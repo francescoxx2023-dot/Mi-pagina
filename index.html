@@ -2,8 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Delta Script AI — Premium</title>
-  <script src="https://js.puter.com/v2/"></script>
+  <title>Delta Script AI — OpenRouter</title>
   <style>
     * { box-sizing: border-box; }
     body { font-family: system-ui, sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; background: #0f0f13; color: #e5e5e5; }
@@ -11,21 +10,22 @@
     .sub { color: #9ca3af; font-size: .85rem; margin-bottom: 1.2rem; }
     textarea, pre { width: 100%; padding: .8rem; border-radius: 8px; border: 1px solid #333; background: #17171c; color: #ddd; font-family: ui-monospace, monospace; font-size: .9rem; }
     textarea { height: 110px; resize: vertical; }
-    pre { min-height: 240px; white-space: pre-wrap; word-break: break-word; }
+    pre { min-height: 260px; white-space: pre-wrap; word-break: break-word; }
     .row { display: flex; gap: .5rem; flex-wrap: wrap; margin: .6rem 0; align-items: center; }
     button { padding: .65rem 1.1rem; border: none; border-radius: 6px; background: #6366f1; color: #fff; font-weight: 600; cursor: pointer; }
     button:hover { background: #4f46e5; }
     button:disabled { background: #2a2a35; cursor: wait; }
     button.alt { background: #2a2a35; }
     button.alt:hover { background: #3a3a48; }
-    select { padding: .5rem; border-radius: 6px; background: #17171c; color: #ddd; border: 1px solid #333; max-width: 100%; }
+    select { padding: .5rem; border-radius: 6px; background: #17171c; color: #ddd; border: 1px solid #333; flex: 1; min-width: 320px; }
     .error { color: #f87171; }
     .nota { font-size: .8rem; color: #f59e0b; margin-top: 1rem; line-height: 1.5; }
+    .warn { font-size: .8rem; color: #f87171; margin-top: .6rem; line-height: 1.5; }
   </style>
 </head>
 <body>
-  <h1>Delta Script AI — Modelos Premium</h1>
-  <p class="sub">Elegí entre flagships de OpenAI, Anthropic, Google, xAI y más. Sin API key. Sin límite diario.</p>
+  <h1>Delta Script AI — OpenRouter</h1>
+  <p class="sub">Modelos premium de OpenAI, Anthropic, Google, xAI, DeepSeek, Qwen y más con una sola key.</p>
 
   <textarea id="prompt" placeholder="Ej: GUI para volar, velocidad infinita, noclip y ESP de jugadores. Compatible con Delta Executor."></textarea>
 
@@ -36,47 +36,45 @@
   </div>
 
   <div class="row">
-    <select id="model" style="flex:1; min-width: 320px;">
-      <optgroup label="OpenAI — Flagship">
-        <option value="openai/gpt-5.5" selected>GPT-5.5 (flagship actual)</option>
-        <option value="openai/gpt-5.5-pro">GPT-5.5 Pro (razonamiento experto)</option>
-        <option value="openai/gpt-5.4">GPT-5.4</option>
-        <option value="openai/gpt-5.4-nano">GPT-5.4 Nano (rápido)</option>
+    <select id="model">
+      <optgroup label="⭐ Recomendados para código Lua">
+        <option value="openai/gpt-4o" selected>OpenAI GPT-4o</option>
+        <option value="anthropic/claude-sonnet-4">Claude Sonnet 4</option>
+        <option value="qwen/qwen3-coder">Qwen3 Coder</option>
+        <option value="deepseek/deepseek-chat-v3.1">DeepSeek V3.1</option>
+      </optgroup>
+
+      <optgroup label="OpenAI">
         <option value="openai/gpt-5">GPT-5</option>
+        <option value="openai/gpt-4.1">GPT-4.1</option>
         <option value="openai/o3">o3 (razonamiento)</option>
         <option value="openai/o4-mini">o4-mini</option>
       </optgroup>
 
-      <optgroup label="Anthropic — Claude">
-        <option value="anthropic/claude-opus-5-5">Claude Opus 5.5 (máxima capacidad)</option>
-        <option value="anthropic/claude-opus-4-7">Claude Opus 4.7</option>
-        <option value="anthropic/claude-opus-4-6-fast">Claude Opus 4.6 Fast (baja latencia)</option>
-        <option value="anthropic/claude-sonnet-4-6">Claude Sonnet 4.6 (equilibrado)</option>
-        <option value="anthropic/claude-haiku-4-5">Claude Haiku 4.5 (rápido/económico)</option>
+      <optgroup label="Anthropic">
+        <option value="anthropic/claude-opus-4">Claude Opus 4</option>
+        <option value="anthropic/claude-3.7-sonnet">Claude 3.7 Sonnet</option>
+        <option value="anthropic/claude-3.5-haiku">Claude 3.5 Haiku</option>
       </optgroup>
 
-      <optgroup label="Google — Gemini">
-        <option value="google/gemini-3.8-flash">Gemini 3.8 Flash (multimodal)</option>
-        <option value="google/gemini-2.5-pro">Gemini 2.5 Pro (razonamiento profundo)</option>
-        <option value="google/gemini-2.5-flash">Gemini 2.5 Flash (diario)</option>
-        <option value="google/gemini-2.0-flash">Gemini 2.0 Flash</option>
+      <optgroup label="Google">
+        <option value="google/gemini-2.5-pro">Gemini 2.5 Pro</option>
+        <option value="google/gemini-2.5-flash">Gemini 2.5 Flash</option>
       </optgroup>
 
-      <optgroup label="xAI — Grok">
-        <option value="x-ai/grok-4.7">Grok 4.7 (flagship)</option>
-        <option value="x-ai/grok-4.6">Grok 4.6</option>
-        <option value="x-ai/grok-4.1-fast">Grok 4.1 Fast</option>
+      <optgroup label="xAI / Otros">
+        <option value="x-ai/grok-4">Grok 4</option>
+        <option value="x-ai/grok-3">Grok 3</option>
+        <option value="mistralai/mistral-large">Mistral Large</option>
+        <option value="meta-llama/llama-4-maverick">Llama 4 Maverick</option>
+        <option value="z-ai/glm-4.6">GLM 4.6</option>
+        <option value="moonshotai/kimi-k2">Kimi K2</option>
       </optgroup>
 
-      <optgroup label="Open-Source / Especializados">
-        <option value="deepseek/deepseek-r1">DeepSeek R1 (razonamiento)</option>
-        <option value="deepseek/deepseek-v4-pro">DeepSeek V4 Pro</option>
-        <option value="qwen/qwen3-coder-480b">Qwen3 Coder 480B (código)</option>
-        <option value="mistral/mistral-large-latest">Mistral Large</option>
-        <option value="z-ai/glm-5.3">GLM 5.3 (agentes/código)</option>
-        <option value="moonshot/kimi-k2.5">Kimi K2.5</option>
-        <option value="meta/llama-4.1-405b">Llama 4.1 405B</option>
-        <option value="kt/midm-k-3.0-pro">KT Mi:dm K 3.0 Pro</option>
+      <optgroup label="🆓 Gratuitos (:free)">
+        <option value="deepseek/deepseek-r1:free">DeepSeek R1 Free</option>
+        <option value="meta-llama/llama-3.3-70b-instruct:free">Llama 3.3 70B Free</option>
+        <option value="google/gemini-2.0-flash-exp:free">Gemini 2.0 Flash Free</option>
       </optgroup>
     </select>
   </div>
@@ -84,13 +82,17 @@
   <h2 style="font-size:1rem;margin-top:1.2rem;">Resultado:</h2>
   <pre id="output">Acá aparecerá tu script...</pre>
 
+  <div class="warn">
+    🔴 La API key está embebida en el HTML. Si publicás este Pen, cualquiera puede verla y gastar tu saldo. Rotá la key después de probar y poné un límite de gasto en OpenRouter.
+  </div>
   <div class="nota">
-    ⚠️ <strong>User-Pays:</strong> la primera vez que generes, Puter pedirá inicio de sesión gratuito. Después, el uso corre por tu cuenta (para uso personal suele ser mínimo o cero).<br>
-    ⚠️ No todos los modelos responden igual para Luau. GPT-5.5, Claude Opus 5.5 y Qwen3 Coder suelen dar mejor código.<br>
     ⚠️ Delta es un ejecutor de terceros. Usalo bajo tu responsabilidad y revisá los scripts antes de ejecutarlos.
   </div>
 
   <script>
+    const API_KEY = "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";
+    const ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
+
     const btn = document.getElementById('btn');
     const promptEl = document.getElementById('prompt');
     const output = document.getElementById('output');
@@ -110,22 +112,39 @@ El script debe poder pegarse y ejecutarse directamente en Delta.`;
       output.textContent = 'Generando con ' + modelEl.value + '...';
 
       try {
-        const response = await puter.ai.chat(
-          `${SYSTEM}\n\nDescripción del script: ${userPrompt}`,
-          { model: modelEl.value }
-        );
+        const res = await fetch(ENDPOINT, {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer ' + API_KEY,
+            'Content-Type': 'application/json',
+            'HTTP-Referer': 'https://codepen.io',
+            'X-Title': 'Delta Script AI'
+          },
+          body: JSON.stringify({
+            model: modelEl.value,
+            messages: [
+              { role: 'system', content: SYSTEM },
+              { role: 'user', content: userPrompt }
+            ],
+            temperature: 0.3,
+            max_tokens: 4096
+          })
+        });
 
-        let texto = typeof response === 'string'
-          ? response
-          : (response?.text || response?.message?.content || '');
+        const data = await res.json();
+        if (!res.ok) {
+          const msg = data?.error?.message || ('HTTP ' + res.status);
+          throw new Error(msg);
+        }
 
+        let texto = data?.choices?.[0]?.message?.content || '';
         if (!texto) throw new Error('La IA no devolvió contenido.');
 
         texto = texto.replace(/^```[a-z]*\n?/i, '').replace(/```$/,'').trim();
         output.textContent = texto;
       } catch (err) {
         output.textContent = '❌ Error: ' + err.message +
-          '\n\nProbá otro modelo o asegurate de haber iniciado sesión en Puter.';
+          '\n\nVerificá que la key siga activa, que el modelo exista y que tengas saldo en OpenRouter.';
         output.classList.add('error');
       } finally {
         btn.disabled = false;
